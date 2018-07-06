@@ -1,4 +1,6 @@
 .yin-yang {
+  margin: auto;
+  margin-top: 200px;
   width: 180px;
   height: 90px;
   border-width: 5px 5px 100px 5px;
