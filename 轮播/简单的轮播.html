@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+    .images {
+      display: flex;
+      align-items: flex-start;
+      transition: all 0.5s;
+    }
+
+    .window {
+      width: 690px;
+      height: 450px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .red {
+      color: red;
+    }
+
+    #buttons {
+      position: absolute;
+      bottom: 0px;
+      left: 296px;
+    }
+
+    #buttons>span {
+      display: inline-block;
+      width: 21px;
+      height: 21px;
+      border-radius: 50%;
+      background-color: #fff;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="window">
+    <div class="images" id='images'>
+      <img src="https://n2-q.mafengwo.net/s1/M00/75/97/wKgBm03oSiWgsZ38AAJ6bwc_e6A49.jpeg?imageMogr2%2Fthumbnail%2F%21690x450r%2Fgravity%2FCenter%2Fcrop%2F%21690x450%2Fquality%2F90%7Cwatermark%2F1%2Fimage%2FaHR0cHM6Ly9wMS1xLm1hZmVuZ3dvLm5ldC9zOC9NMDAvNjIvNzkvd0tnQnBWaHVDekNBSWt0SEFBQU5HOEw5QlFNMTYwLnBuZw%3D%3D%2Fgravity%2FNorthWest%2Fdx%2F20%2Fdy%2F211"
+        alt="" width=690 height=450>
+      <img src="https://b2-q.mafengwo.net/s1/M00/75/97/wKgBm03oSiKsHqcWAAO06xNdlTE39.jpeg?imageMogr2%2Fthumbnail%2F%21690x450r%2Fgravity%2FCenter%2Fcrop%2F%21690x450%2Fquality%2F90%7Cwatermark%2F1%2Fimage%2FaHR0cHM6Ly9wMS1xLm1hZmVuZ3dvLm5ldC9zOC9NMDAvNjIvNzkvd0tnQnBWaHVDekNBSWt0SEFBQU5HOEw5QlFNMTYwLnBuZw%3D%3D%2Fgravity%2FNorthWest%2Fdx%2F20%2Fdy%2F21"
+        alt="" width=690 height=450>
+      <img src="https://n2-q.mafengwo.net/s1/M00/19/77/wKgBm03vYWzo19gqAAQxAsvQEto61.jpeg?imageMogr2%2Fthumbnail%2F%21690x450r%2Fgravity%2FCenter%2Fcrop%2F%21690x450%2Fquality%2F90%7Cwatermark%2F1%2Fimage%2FaHR0cHM6Ly9wMS1xLm1hZmVuZ3dvLm5ldC9zOC9NMDAvNjIvNzkvd0tnQnBWaHVDekNBSWt0SEFBQU5HOEw5QlFNMTYwLnBuZw%3D%3D%2Fgravity%2FNorthWest%2Fdx%2F20%2Fdy%2F21"
+        alt="" width=690 height=450>
+      <img src="https://p1-q.mafengwo.net/s5/M00/E8/CB/wKgB21AM_f2Sk8xxAAgUa47iqQA55.jpeg?imageMogr2%2Fthumbnail%2F%21690x450r%2Fgravity%2FCenter%2Fcrop%2F%21690x450%2Fquality%2F90%7Cwatermark%2F1%2Fimage%2FaHR0cHM6Ly9wMS1xLm1hZmVuZ3dvLm5ldC9zOC9NMDAvNjIvNzkvd0tnQnBWaHVDekNBSWt0SEFBQU5HOEw5QlFNMTYwLnBuZw%3D%3D%2Fgravity%2FNorthWest%2Fdx%2F20%2Fdy%2F21"
+        alt="" width=690 height=450>
+    </div>
+    <span id="buttons">
+      <span>1</span>
+      <span>2</span>
+      <span>3</span>
+      <span>4</span>
+    </span>
+  </div>
+</body>
+<script>
+  var buttons = $('#buttons>span')
+    for (let i = 0; i < buttons.length; i++) {
+      $(buttons[i]).on('click', function (x) {
+        var index = $(x.currentTarget).index();
+        var p = index * -690
+        $('#images').css({
+          transform: 'translate(' + p + 'px)'
+        })
+        n = index
+        activeButton(buttons)
+      })
+    }
+
+    function activeButton(x) {
+      x.eq(n)
+        .addClass('red')
+        .siblings('.red').removeClass('red')
+    }
+    let n = 0;
+    var Timer = setTime()
+    function setTime() {
+      return setInterval(function () {
+        n += 1
+        buttons.eq(n % 4).trigger('click')
+      }, 2000)
+    }
+
+    $('.window').on('mouseenter', function () {
+      window.clearInterval(Timer)
+    })
+    $('.window').on('mouseleave', function () {
+      Timer = setTime();
+    }) 
+</script>
+</html>
