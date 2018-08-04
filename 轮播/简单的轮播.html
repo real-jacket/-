@@ -67,14 +67,13 @@
         var p = index * -690
         $('#images').css({
           transform: 'translate(' + p + 'px)'
-        })
-        n = index
-        activeButton(buttons)
+        });
+        activeButton(buttons.eq(index));
       })
     }
 
     function activeButton(x) {
-      x.eq(n)
+      x
         .addClass('red')
         .siblings('.red').removeClass('red')
     }
