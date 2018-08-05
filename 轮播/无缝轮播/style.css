@@ -1,0 +1,33 @@
+.window{
+  width: 690px;
+  height: 450px;
+  margin: 200px auto;
+  overflow: hidden;
+  box-sizing: content-box;
+  position: relative;
+}
+.images{
+  
+}
+img{
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  left: 100%;
+  transition: all 1s;
+}
+.current{
+  transform: translateX(-100%);
+  z-index: 1;
+}
+.leave{;
+  transform: translateX(-200%);
+  z-index: 1;
+}
+.enter{
+  transform: translateX(0);
+  z-index: 1;
+}
+.stay{
+  transform: translateX(100%);
+}
