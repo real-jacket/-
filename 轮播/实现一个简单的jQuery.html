@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>一个简单的jQuery</title>
+</head>
+<style>
+  .red{
+    color:red;
+  }
+  .green{
+    color:green;
+  }
+</style>
+<body>
+  <ul>
+    <li class="item1">第1项</li>
+    <li class="item2">第2项</li>
+    <li class="item3">第3项</li>
+    <li class="item4">第4项</li>
+  </ul>
+</body>
+<script>
+  window.jQuery = function (nodeorselector) {
+    var node = document.querySelectorAll(nodeorselector)
+
+    node.addClass = function (e) {
+      for (let i = 0; i < this.length; i++) {
+        this[i].classList.add(e)
+      }
+    }
+
+    node.setText = function (e) {
+      for (let i = 0; i < this.length; i++) {
+        this[i].textContent = e;
+      }
+    }
+    return node
+  }
+
+  window.$ = jQuery
+  var $li = $('li')
+  var $li3 = $('.item3')
+  $li.addClass('red')
+  $li.setText('hi')
+  $li3.addClass('green')
+</script>
+</html>
