@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>苹果风格无缝轮播</title>
+    
+    <style>
+        h1,h2{
+            text-align: center;
+        }
+        #window{
+            width: 690px;
+            height: 450px;
+            margin: auto;
+            overflow: hidden;
+            position: relative;
+        }
+        #slide{
+            display: flex;
+            transition: all 1s;
+        }
+        #buttons{
+            width: 100%;
+            position: absolute;
+            bottom: 20px;
+            text-align: center;
+        }
+        .button{
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            margin: 0 10px;
+            border: 2px solid hsla(0,0%,100%,0.6); 
+            border-radius: 50%;
+        }
+        .button.active{
+            transform: scale(1.2);
+            background: white;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>一个简单的轮播</h1>
+    <div id="window">
+        <div id="slide">
+            <img src="甘南1.jpeg" alt="">
+            <img src="甘南2.jpeg" alt="">
+            <img src="甘南3.jpeg" alt="">
+            <img src="甘南4.jpeg" alt="">
+        </div>
+        <div id="buttons">
+            <span class="button"></span>
+            <span class="button"></span>
+            <span class="button"></span>
+            <span class="button"></span>
+        </div>
+    </div>
+    <h2>甘南，再一步，就是天堂！</h2>
+    <script src="main.js"></script>
+</body>
+</html>
