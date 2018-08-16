@@ -12,8 +12,8 @@
             width: 690px;
             height: 450px;
             margin: auto;
-            overflow: hidden;
             position: relative;
+            overflow: hidden;
         }
         #slide{
             display: flex;
@@ -37,6 +37,19 @@
             transform: scale(1.2);
             background: white;
         }
+        #previous,#next{
+            text-align: center;
+            padding: 10px 0;
+            box-sizing:border-box;
+            width: 40px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.4);
+            position: absolute;
+            top: 200px;
+        }
+        #next{
+            right: 0;
+        }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
@@ -44,16 +57,20 @@
     <h1>一个简单的轮播</h1>
     <div id="window">
         <div id="slide">
-            <img src="甘南1.jpeg" alt="">
-            <img src="甘南2.jpeg" alt="">
-            <img src="甘南3.jpeg" alt="">
-            <img src="甘南4.jpeg" alt="">
+            <img src="甘南1.jpeg" alt="1">
+            <img src="甘南2.jpeg" alt="2">
+            <img src="甘南3.jpeg" alt="3">
+            <img src="甘南4.jpeg" alt="4">
         </div>
         <div id="buttons">
             <span class="button"></span>
             <span class="button"></span>
             <span class="button"></span>
             <span class="button"></span>
+        </div>
+        <div>
+            <div id="previous"><img src="上一个.png" alt="上一个" width="30"></div>
+            <div id="next"><img src="下一个.png" alt="下一个" width="30"></div>
         </div>
     </div>
     <h2>甘南，再一步，就是天堂！</h2>

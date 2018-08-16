@@ -1,58 +1,76 @@
-let $buttons = $('.button')
-let $slide = $('#slide')
-let $images = $('img')
-
-let $firstcopy = $images.eq(0).clone(true);
-let $lastcopy = $images.eq($images.length - 1).clone(true);
-$slide.append($firstcopy);
-$slide.prepend($lastcopy);
-
-$slide.css({transform:'translateX(-690px)'});
-
+let $buttons = $('.button');
+let $slide = $('#slide');
+let $images = $('#slide>img');
 let current = 0;
-$buttons.eq(0).on('click',function(e){
-    if(current === 3){
-        $slide.css({transform:'translateX(-3450px)'})
-        .one('transitionend',function(){
+
+makeFade(0,$images.length-1);
+$slide.css({transform:'translateX(-690px)'});
+bindButtons();
+
+$('#next').on('click',function(){
+    goToslide(current+1)
+});
+$('#previous').on('click',function(){
+    goToslide(current-1)
+});
+
+let timer = setInterval(function(){
+    goToslide(current+1);
+},2000)
+
+$('#window').on('mouseenter',function(){
+    window.clearInterval(timer);
+    console.log('我进来了')
+}).on('mouseleave',function(){
+        timer = setInterval(function(){
+        goToslide(current+1);
+    },2000)
+    console.log('我出去了')
+})
+
+function makeFade(first,last){
+    let $firstcopy = $images.eq(first).clone(true);
+    let $lastcopy = $images.eq(last).clone(true);
+    $slide.append($firstcopy);
+    $slide.prepend($lastcopy); 
+}
+
+
+function bindButtons(){
+    $('#buttons').on('click','.button',function(e){
+        let $button = $(e.currentTarget);
+        let index = $button.index();
+        goToslide(index);
+    })
+}
+
+
+function goToslide(index) {
+    if(index > $buttons.length-1){
+        index = 0;
+    }else if(index<0){
+        index =  $buttons.length - 1;
+    }
+    if(current === $buttons.length-1&& index === 0){
+        $slide.css({transform:'translateX('+ (-($buttons.length+1)*690) +'px)'})
+         .one('transitionend',function(){
             $slide.hide()
                 .offset();
-            $slide.css({transform:'translateX(-690px)'})
-                .show();
-        })
-    }else{
-        $slide.css({transform:'translateX(-690px)'});
-    }
-    $(e.currentTarget).siblings().removeClass('active')
-    $(e.currentTarget).addClass('active');
-    current = 0;
-})
-
-$buttons.eq(1).on('click',function(e){
-    $slide.css({transform:'translateX(-1380px)'});
-    $(e.currentTarget).siblings().removeClass('active')
-    $(e.currentTarget).addClass('active');
-    current = 1;
-})
-$buttons.eq(2).on('click',function(e){
-    $slide.css({transform:'translateX(-2070px)'});
-    $(e.currentTarget).siblings().removeClass('active')
-    $(e.currentTarget).addClass('active');
-    current = 2;
-})
-$buttons.eq(3).on('click',function(e){
-    if(current === 0){
+            $slide.css({transform:'translateX(' + (-(index+1)*690) + 'px)'})
+                 .show();
+         })
+    }else if(current === 0&& index === $buttons.length-1){
         $slide.css({transform:'translateX(0px)'})
         .one('transitionend',function(){
             $slide.hide()
                 .offset();
-            $slide.css({transform:'translateX(-2760px)'})
+            $slide.css({transform:'translateX(' + (-(index+1)*690) + 'px)'})
             .show();
         })
     }else{
-        $slide.css({transform:'translateX(-2760px)'});
+        $slide.css({transform:'translateX(' + (-(index+1)*690) + 'px)'});
     }
-    $(e.currentTarget).siblings().removeClass('active')
-    $(e.currentTarget).addClass('active');
-    current = 3;
-    
-})
+    current = index;
+    $buttons.eq(current).siblings().removeClass('active')
+    $buttons.eq(current).addClass('active');
+}
